@@ -1,6 +1,4 @@
 
-
-
 //------------Funcões--------------
 
 function sortear() {
@@ -15,7 +13,8 @@ function sortear() {
     let resultado = document.getElementById('resultado');
     exibirTextoNaTela('resultado', `<label class="texto__paragrafo">Números sorteados:  ${numerosSorteados}</label>`);
 
-    document.getElementById('btn-reiniciar').repla
+    alterarStatusBotao();
+
 }
 
 function exibirTextoNaTela(id, texto) {
@@ -45,9 +44,26 @@ function gerarNumerosAleatorios(quantidade, deNumero, ateNumero) {
 }
 
 function reiniciar() {
-
+    limpaCampos();
+    alterarStatusBotao();
+    exibirTextoNaTela('resultado', '<label class="texto__paragrafo">Números sorteados:  nenhum até agora</label>' );
 }
 
 function limpaCampos() {
+    document.getElementById('quantidade').value = '';
+    document.getElementById('de').value = '';
+    document.getElementById('ate').value = '';
+}
 
+function alterarStatusBotao() {
+    let botao = document.getElementById('btn-reiniciar');
+    if (botao.classList.contains('container__botao-desabilitado')) {
+        botao.classList.remove('container__botao-desabilitado');
+        botao.classList.add('container__botao');
+        document.getElementById('btn-reiniciar').removeAttribute('disabled');
+    } else {
+        botao.classList.add('container__botao-desabilitado');
+        botao.classList.remove('container__botao');
+        document.getElementById('btn-reiniciar').setAttribute('disabled', true);
+    }
 }
